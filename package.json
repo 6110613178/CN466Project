@@ -1,0 +1,24 @@
+{
+  "name": "cn466project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "@line/bot-sdk": "^7.4.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "firebase": "^9.6.0",
+    "mqtt": "^4.2.8",
+    "ngrok": "^4.2.2"
+  },
+  "engine": {
+    "node": "14.x"
+  },
+  "author": "",
+  "license": "ISC"
+}
