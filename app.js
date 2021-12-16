@@ -158,8 +158,8 @@ async function handleEvent(event) {
 
   date = getTodayDate();
   let statusCountFull = Math.floor(statusCount / 2);
-  nameDocumentDate = date.replaceAll('/', '.');
-  nameDocumentSelectedDate = selectedDate.replaceAll('/', '.');
+  nameDocumentDate = date.split('/').join('.');
+  nameDocumentSelectedDate = selectedDate.split('/').join('.');
 
   //แสดง Status และ Humidity
   if (eventText == "status") {
@@ -170,7 +170,7 @@ async function handleEvent(event) {
   }
   else if ((eventText.charAt(2) == '/') && (eventText.charAt(5) == '/')) {
     selectedDate = eventText;
-    nameDocumentSelectedDate = selectedDate.replaceAll('/', '.');
+    nameDocumentSelectedDate = selectedDate.split('/').join('.');
     return client.replyMessage(event.replyToken, { type: 'text', text: "วันที่เลือก: " + selectedDate });
   }
   else if (eventText == "selected status") {
