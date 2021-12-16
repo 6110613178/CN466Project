@@ -1,6 +1,6 @@
 import line from '@line/bot-sdk';
 import express from 'express';
-// import ngrok from 'ngrok';
+import ngrok from 'ngrok';
 import axios from 'axios';
 import mqtt from 'mqtt';
 import dotenv from 'dotenv';
@@ -39,10 +39,10 @@ let currentDataHumid = "";
 let statusCount = 0;
 let statusCountFull = Math.floor(statusCount / 2);
 
-let date = getTodayDate();;
+let date = getTodayDate();
 let selectedDate = getYesterdayDate();
-var nameDocumentDate = date.replaceAll('/', '.');
-var nameDocumentSelectedDate = selectedDate.replaceAll('/', '.');
+let nameDocumentDate = date.split('/').join('.')
+let nameDocumentSelectedDate = selectedDate.split('/').join('.')
 let json_date = { date: date, move_count: statusCountFull };
 
 //action MQTT
@@ -214,6 +214,7 @@ const port = process.env.PORT || 3000;
 // }
 
 // start_ngrok();
+
 async function start_heroku() {
   const url = process.env.BASE_URL;
   console.log('Set LINE webhook at ' + url + '/callback');
@@ -221,6 +222,7 @@ async function start_heroku() {
 }
 
 start_heroku()
+
 app.listen(port, () => {
   console.log(`listening on ${port}`);
 });
