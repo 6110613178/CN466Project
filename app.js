@@ -148,6 +148,7 @@ function getProfile(id) {
 }
 
 //Start Event
+//อ่านหน้าเว็บจาก folder static
 app.use(express.static('static'));
 
 async function handleEvent(event) {
@@ -213,6 +214,13 @@ const port = process.env.PORT || 3000;
 // }
 
 // start_ngrok();
+async function start_heroku() {
+  const url = process.env.BASE_URL;
+  console.log('Set LINE webhook at ' + url + '/callback');
+  await client.setWebhookEndpointUrl(url + '/callback');
+}
+
+start_heroku()
 app.listen(port, () => {
   console.log(`listening on ${port}`);
 });
