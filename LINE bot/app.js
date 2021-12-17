@@ -135,18 +135,6 @@ function getYesterdayDate() {
   return selectedDate;
 }
 
-function getProfile(id) {
-  let data = axios.get('https://api.line.me/v2/bot/profile/' + id, {
-    headers: {
-      'Authorization': 'Bearer ' + process.env.CHANNEL_ACCESS_TOKEN,
-      'Content-Type': 'application/json'
-    }
-  }).then((res) => {
-    return res.data
-  });
-  return data
-}
-
 //Start Event
 //อ่านหน้าเว็บจาก folder static
 app.use(express.static('static'));
@@ -190,16 +178,6 @@ async function handleEvent(event) {
   }
   else if (eventText == "selected date") {
     return client.replyMessage(event.replyToken, { type: 'text', text: "วันที่เลือก: " + selectedDate });
-  }
-
-  //Profile
-  if (eventText === 'profile') {
-    const profile = await getProfile(event.source.userId)
-    msg = [
-      { type: 'text', text: 'Display name: ' + profile.displayName },
-      { type: 'text', text: 'Profile image: ' },
-      { type: 'image', originalContentUrl: profile.pictureUrl, previewImageUrl: profile.pictureUrl }
-    ];
   }
 
   // use reply API
